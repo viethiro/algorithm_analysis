@@ -1,4 +1,12 @@
+import time
+
+
+qtd_trocas = 0 # Quantidade de Trocas
+qtd_comps = 0# Quantidade de Comparações
 my_array = [64, 34, 25, 12, 22, 11, 90, 5]
+elementos = len(my_array)
+
+tempo_inicial = time.time()
 
 n = len(my_array)
 for i in range(1,n):
@@ -6,13 +14,18 @@ for i in range(1,n):
     current_value = my_array[i]
     for j in range(i-1, -1, -1):
         if my_array[j] > current_value:
+            qtd_comps+=1
             my_array[j+1] = my_array[j]
+            qtd_trocas+=1 # count troca
             insert_index = j
         else:
+            qtd_comps+=1 # count comparacao
             break
     my_array[insert_index] = current_value
 
-print("Sorted array:", my_array)
+tempo = time.time() - tempo_inicial
+
+print(f'{my_array}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}')
 
 # Etapa 1: começamos com uma matriz não classificada.
 # [ 7, 12, 9, 11, 3]

@@ -1,20 +1,34 @@
+import time
+
+
+qtd_trocas = 0 # Quantidade de Trocas
+qtd_comps = 0# Quantidade de Comparações
+my_array = [64, 34, 25, 12, 22, 11, 90, 5]
+elementos = len(my_array)
+tempo_inicial = time.time()
+
 def heapify(arr, n, i):
+    global qtd_trocas, qtd_comps
     largest = i
     left = 2 * i + 1
     right = 2 * i + 2
 
     if left < n and arr[left] > arr[largest]:
+        qtd_comps+=1 # count comparacao
         largest = left
 
     if right < n and arr[right] > arr[largest]:
+        qtd_comps+=1 # count comparacao
         largest = right
 
-    # Se o maior não for a raiz
     if largest != i:
+        qtd_comps+=1 # count comparacao
         arr[i], arr[largest] = arr[largest], arr[i]
+        qtd_trocas+=1 # count troca
         heapify(arr, n, largest)
 
 def heap_sort(arr):
+    global qtd_trocas, qtd_comps
     n = len(arr)
 
     for i in range(n // 2 - 1, -1, -1):
@@ -26,9 +40,11 @@ def heap_sort(arr):
 
     return arr
 
-my_array = [12, 11, 13, 5, 6, 7]
+
+tempo = time.time() - tempo_inicial
+
 sorted_array = heap_sort(my_array)
-print("Sorted array:", sorted_array)
+print(f'{sorted_array}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}')
 
 
 
