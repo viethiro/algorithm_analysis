@@ -2,7 +2,7 @@ import time
 
 
 qtd_trocas = 0 # Quantidade de Trocas
-qtd_comps = 0# Quantidade de Comparações
+qtd_comps = 0 # Quantidade de Comparações
 my_array = [64, 34, 25, 12, 22, 11, 90, 5]
 elementos = len(my_array)
 
@@ -13,15 +13,15 @@ for i in range(1,n):
     insert_index = i
     current_value = my_array[i]
     for j in range(i-1, -1, -1):
+        qtd_comps+=1 # count comparacao
         if my_array[j] > current_value:
-            qtd_comps+=1
             my_array[j+1] = my_array[j]
             qtd_trocas+=1 # count troca
             insert_index = j
         else:
-            qtd_comps+=1 # count comparacao
             break
     my_array[insert_index] = current_value
+    qtd_trocas+=1 # count troca
 
 tempo = time.time() - tempo_inicial
 

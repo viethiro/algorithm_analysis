@@ -13,16 +13,16 @@ def heapify(arr, n, i):
     left = 2 * i + 1
     right = 2 * i + 2
 
+    qtd_comps+=1 # count comparacao
     if left < n and arr[left] > arr[largest]:
-        qtd_comps+=1 # count comparacao
         largest = left
 
+    qtd_comps+=1 # count comparacao
     if right < n and arr[right] > arr[largest]:
-        qtd_comps+=1 # count comparacao
         largest = right
 
+    qtd_comps+=1 # count comparacao
     if largest != i:
-        qtd_comps+=1 # count comparacao
         arr[i], arr[largest] = arr[largest], arr[i]
         qtd_trocas+=1 # count troca
         heapify(arr, n, largest)
@@ -36,6 +36,7 @@ def heap_sort(arr):
 
     for i in range(n - 1, 0, -1):
         arr[i], arr[0] = arr[0], arr[i]
+        qtd_trocas+=1 # count troca
         heapify(arr, i, 0)
 
     return arr

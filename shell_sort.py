@@ -1,4 +1,17 @@
+import time
+
+# qtd_trocas+=1 # count troca
+# qtd_comps+=1 # count comparacao
+
+qtd_trocas = 0 # Quantidade de Trocas
+qtd_comps = 0 # Quantidade de Comparações
+my_array = [64, 34, 25, 12, 22, 11, 90, 5]
+elementos = len(my_array)
+
+tempo_inicial = time.time()
+
 def shell_sort(my_array):
+    global qtd_trocas, qtd_comps
     n = len(my_array)
     gap = n // 2
 
@@ -8,18 +21,25 @@ def shell_sort(my_array):
             j = i
 
             while j >= gap and my_array[j - gap] > temp:
+                qtd_comps+=1 # count comparacao
                 my_array[j] = my_array[j - gap]
+                qtd_trocas+=1 # count troca
                 j -= gap
 
             my_array[j] = temp
+            qtd_trocas+=1 # count troca
 
         gap //= 2
 
     return my_array
 
-my_array = [64, 34, 25, 12, 22, 11, 90, 5]
-sorted_array = shell_sort(my_array)
-print("Sorted array:", sorted_array)
+tempo = time.time() - tempo_inicial
+
+print(
+    f'''
+{shell_sort(my_array)}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
+'''
+    )
 
 # Passo 1: Início com o array não ordenado.
 # Array inicial: [64, 34, 25, 12, 22, 11, 90, 5]

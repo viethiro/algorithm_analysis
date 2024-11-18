@@ -1,11 +1,16 @@
 import time
+import json
+
+with open("listas_numeros.json", "r") as arquivo:
+    dados = json.load(arquivo)  # Lê o conteúdo do JSON
+nome_lista = 'lista_3'
+my_array = dados[nome_lista]
 
 # qtd_trocas+=1 # count troca
 # qtd_comps+=1 # count comparacao
 
 qtd_trocas = 0 # Quantidade de Trocas
 qtd_comps = 0# Quantidade de Comparações
-my_array = [64, 34, 25, 12, 22, 11, 90, 5]
 elementos = len(my_array)
 
 tempo_inicial = time.time()
@@ -14,18 +19,18 @@ n = len(my_array)
 for i in range(n-1):
     swapped = False
     for j in range(n-i-1):
+        qtd_comps+=1 # count comparacao
         if my_array[j] > my_array[j+1]:
-            qtd_comps+=1 # count comparacao
             my_array[j], my_array[j+1] = my_array[j+1], my_array[j]
             qtd_trocas+=1 # count troca
             swapped = True
+    qtd_comps+=1 # count comparacao
     if not swapped:
-        qtd_comps+=1 # count comparacao
         break
 
 tempo = time.time() - tempo_inicial
 
-print(f'{my_array}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}')
+print(f'Elemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}')
 
 # Etapa 1: começamos com uma matriz não classificada.
 # [7, 12, 9, 11, 3]

@@ -1,8 +1,22 @@
+import time
+
+# qtd_trocas+=1 # count troca
+# qtd_comps+=1 # count comparacao
+
+qtd_trocas = 0 # Quantidade de Trocas
+qtd_comps = 0# Quantidade de Comparações
+my_array = [64, 34, 25, 12, 22, 11, 90, 5]
+elementos = len(my_array)
+
+tempo_inicial = time.time()
+
 def merge(left, right):
+    global qtd_trocas, qtd_comps
     result = []
     i = j = 0
     
     while i < len(left) and j < len(right):
+        qtd_comps+=1 # count comparacao
         if left[i] < right[j]:
             result.append(left[i])
             i += 1
@@ -16,6 +30,7 @@ def merge(left, right):
     return result
 
 def mergeSort(arr):
+    global qtd_trocas, qtd_comps
     step = 1  # Starting with sub-arrays of length 1
     length = len(arr)
     
@@ -29,14 +44,21 @@ def mergeSort(arr):
             # Place the merged array back into the original array
             for j, val in enumerate(merged):
                 arr[i + j] = val
+                qtd_trocas+=1 # count troca
                 
         step *= 2  # Double the sub-array length for the next iteration
         
     return arr
 
-unsortedArr = [3, 7, 6, -10, 15, 23.5, 55, -13]
-sortedArr = mergeSort(unsortedArr)
-print("Sorted array:", sortedArr)
+
+tempo = time.time() - tempo_inicial
+
+sorted_array = mergeSort(my_array)
+print(
+    f'''
+{sorted_array}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
+'''
+    )
 
 # Etapa 1: Começamos com um array não classificado, e sabemos que ele se divide ao meio até que os subarrays consistam apenas de um elemento. A função Merge Sort chama a si mesma duas vezes, uma para cada metade do array. Isso significa que o primeiro subarray será dividido nos menores pedaços primeiro.
 # [ 12, 8, 9, 3, 11, 5, 4]

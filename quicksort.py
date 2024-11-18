@@ -1,27 +1,52 @@
+import time
+
+# qtd_trocas+=1 # count troca
+# qtd_comps+=1 # count comparacao
+
+qtd_trocas = 0 # Quantidade de Trocas
+qtd_comps = 0 # Quantidade de Comparações
+my_array = [64, 34, 25, 12, 22, 11, 90, 5]
+elementos = len(my_array)
+
+tempo_inicial = time.time()
+
 def partition(array, low, high):
+    global qtd_comps, qtd_trocas
     pivot = array[high]
     i = low - 1
 
     for j in range(low, high):
+        qtd_comps+=1 # count comparacao
         if array[j] <= pivot:
             i += 1
             array[i], array[j] = array[j], array[i]
+            qtd_trocas+=1 # count troca
 
     array[i+1], array[high] = array[high], array[i+1]
+    qtd_trocas+=1 # count troca
     return i+1
 
 def quicksort(array, low=0, high=None):
+    qtd_comps+=1 # count comparacao
     if high is None:
         high = len(array) - 1
 
+    qtd_comps+=1 # count comparacao
     if low < high:
         pivot_index = partition(array, low, high)
         quicksort(array, low, pivot_index-1)
         quicksort(array, pivot_index+1, high)
 
-my_array = [64, 34, 25, 12, 22, 11, 90, 5]
-quicksort(my_array)
-print("Sorted array:", my_array)
+
+tempo = time.time() - tempo_inicial
+
+sorted_array = quicksort(my_array)
+print(
+    f'''
+{my_array}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
+'''
+    )
+
 
 # Etapa 1: começamos com uma matriz não classificada.
 # [ 11, 9, 12, 7, 3]
