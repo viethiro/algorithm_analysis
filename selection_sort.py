@@ -1,11 +1,35 @@
 import time
+import json
+
+"""
+Elemen: 1000
+Trocas: 1000
+Compar: 499500
+Tempo : 0.11779618263244629
+
+Elemen: 10000
+Trocas: 10000
+Compar: 49995000
+Tempo : 10.274255990982056
+
+Elemen: 100000
+Trocas: 100000
+Compar: 4999950000
+Tempo : 659.04212474823
+
+"""
 
 # qtd_trocas+=1 # count troca
 # qtd_comps+=1 # count comparacao
 
+with open("listas_numeros.json", "r") as arquivo:
+    dados = json.load(arquivo)  # Lê o conteúdo do JSON
+nome_lista = 'lista_3'
+my_array = dados[nome_lista]
+
 qtd_trocas = 0 # Quantidade de Trocas
 qtd_comps = 0 # Quantidade de Comparações
-my_array = [64, 34, 25, 12, 22, 11, 90, 5]
+# my_array = [64, 34, 25, 12, 22, 11, 90, 5]
 elementos = len(my_array)
 
 tempo_inicial = time.time()
@@ -25,7 +49,7 @@ tempo = time.time() - tempo_inicial
 
 print(
     f'''
-{my_array}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
+Elemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
 '''
     )
 

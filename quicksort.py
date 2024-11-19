@@ -1,11 +1,37 @@
 import time
+import json
+
+"""
+Elemen: 100000
+Trocas: 1187239
+Compar: 2322452
+Tempo : 6.198883056640625e-06
+
+
+Elemen: 10000
+Trocas: 85135
+Compar: 179154
+Tempo : 5.9604644775390625e-06
+
+
+Elemen: 1000
+Trocas: 6491
+Compar: 13136
+Tempo : 7.3909759521484375e-06
+
+"""
 
 # qtd_trocas+=1 # count troca
 # qtd_comps+=1 # count comparacao
 
+with open("listas_numeros.json", "r") as arquivo:
+    dados = json.load(arquivo)  # Lê o conteúdo do JSON
+nome_lista = 'lista_1'
+my_array = dados[nome_lista]
+
 qtd_trocas = 0 # Quantidade de Trocas
 qtd_comps = 0 # Quantidade de Comparações
-my_array = [64, 34, 25, 12, 22, 11, 90, 5]
+# my_array = [64, 34, 25, 12, 22, 11, 90, 5]
 elementos = len(my_array)
 
 tempo_inicial = time.time()
@@ -27,6 +53,7 @@ def partition(array, low, high):
     return i+1
 
 def quicksort(array, low=0, high=None):
+    global qtd_comps, qtd_trocas
     qtd_comps+=1 # count comparacao
     if high is None:
         high = len(array) - 1
@@ -43,7 +70,7 @@ tempo = time.time() - tempo_inicial
 sorted_array = quicksort(my_array)
 print(
     f'''
-{my_array}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
+Elemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
 '''
     )
 

@@ -1,9 +1,29 @@
 import time
+import json
 
+# Elemen: 1000
+# Trocas: 9082
+# Compar: 28746
+# Tempo : 6.4373016357421875e-06
+
+# Elemen: 10000
+# Trocas: 124263
+# Compar: 387789
+# Tempo : 6.9141387939453125e-06
+
+# Elemen: 100000
+# Trocas: 1574644
+# Compar: 4873932
+# Tempo : 6.198883056640625e-06
+
+with open("listas_numeros.json", "r") as arquivo:
+    dados = json.load(arquivo)  # Lê o conteúdo do JSON
+nome_lista = 'lista_3'
+my_array = dados[nome_lista]
 
 qtd_trocas = 0 # Quantidade de Trocas
 qtd_comps = 0# Quantidade de Comparações
-my_array = [64, 34, 25, 12, 22, 11, 90, 5]
+# my_array = [64, 34, 25, 12, 22, 11, 90, 5]
 elementos = len(my_array)
 tempo_inicial = time.time()
 
@@ -45,7 +65,7 @@ def heap_sort(arr):
 tempo = time.time() - tempo_inicial
 
 sorted_array = heap_sort(my_array)
-print(f'{sorted_array}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}')
+print(f'Elemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}')
 
 
 

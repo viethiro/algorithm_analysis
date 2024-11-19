@@ -1,7 +1,13 @@
 import time
+import json
 
 # qtd_trocas+=1 # count troca
 # qtd_comps+=1 # count comparacao
+
+with open("listas_numeros.json", "r") as arquivo:
+    dados = json.load(arquivo)  # Lê o conteúdo do JSON
+nome_lista = 'lista_3'
+my_array = dados[nome_lista]
 
 qtd_trocas = 0 # Quantidade de Trocas
 qtd_comps = 0 # Quantidade de Comparações
@@ -37,7 +43,7 @@ tempo = time.time() - tempo_inicial
 
 print(
     f'''
-{shell_sort(my_array)}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
+{my_array}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
 '''
     )
 
