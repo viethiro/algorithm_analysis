@@ -1,0 +1,380 @@
+{
+    "0": {
+        "Algoritmo": "bubble sort",
+        "Lista": "lista_melhor_1k",
+        "Trocas": 0,
+        "Comparacoes": 1000,
+        "Tempo": 6.198883056640625e-05
+    },
+    "1": {
+        "Algoritmo": "heap sort",
+        "Lista": "lista_melhor_1k",
+        "Trocas": 9708,
+        "Comparacoes": 30624,
+        "Tempo": 0.0033655166625976562
+    },
+    "2": {
+        "Algoritmo": "insertion sort",
+        "Lista": "lista_melhor_1k",
+        "Trocas": 999,
+        "Comparacoes": 999,
+        "Tempo": 0.0002446174621582031
+    },
+    "3": {
+        "Algoritmo": "merge sort",
+        "Lista": "lista_melhor_1k",
+        "Trocas": 10000,
+        "Comparacoes": 5052,
+        "Tempo": 0.002006053924560547
+    },
+    "4": {
+        "Algoritmo": "selection sort",
+        "Lista": "lista_melhor_1k",
+        "Trocas": 1000,
+        "Comparacoes": 499500,
+        "Tempo": 0.021319866180419922
+    },
+    "5": {
+        "Algoritmo": "shell sort",
+        "Lista": "lista_melhor_1k",
+        "Trocas": 8006,
+        "Comparacoes": 8006,
+        "Tempo": 0.0007295608520507812
+    },
+    "6": {
+        "Algoritmo": "bubble sort",
+        "Lista": "lista_melhor_10k",
+        "Trocas": 0,
+        "Comparacoes": 10000,
+        "Tempo": 0.0005667209625244141
+    },
+    "7": {
+        "Algoritmo": "heap sort",
+        "Lista": "lista_melhor_10k",
+        "Trocas": 131956,
+        "Comparacoes": 410868,
+        "Tempo": 0.04659152030944824
+    },
+    "8": {
+        "Algoritmo": "insertion sort",
+        "Lista": "lista_melhor_10k",
+        "Trocas": 9999,
+        "Comparacoes": 9999,
+        "Tempo": 0.002456188201904297
+    },
+    "9": {
+        "Algoritmo": "merge sort",
+        "Lista": "lista_melhor_10k",
+        "Trocas": 140000,
+        "Comparacoes": 71712,
+        "Tempo": 0.026493072509765625
+    },
+    "10": {
+        "Algoritmo": "selection sort",
+        "Lista": "lista_melhor_10k",
+        "Trocas": 10000,
+        "Comparacoes": 49995000,
+        "Tempo": 2.178528308868408
+    },
+    "11": {
+        "Algoritmo": "shell sort",
+        "Lista": "lista_melhor_10k",
+        "Trocas": 120005,
+        "Comparacoes": 120005,
+        "Tempo": 0.011662006378173828
+    },
+    "12": {
+        "Algoritmo": "bubble sort",
+        "Lista": "lista_melhor_100k",
+        "Trocas": 0,
+        "Comparacoes": 100000,
+        "Tempo": 0.005585670471191406
+    },
+    "13": {
+        "Algoritmo": "heap sort",
+        "Lista": "lista_melhor_100k",
+        "Trocas": 1650854,
+        "Comparacoes": 5102562,
+        "Tempo": 0.5913681983947754
+    },
+    "14": {
+        "Algoritmo": "insertion sort",
+        "Lista": "lista_melhor_100k",
+        "Trocas": 99999,
+        "Comparacoes": 99999,
+        "Tempo": 0.024938344955444336
+    },
+    "15": {
+        "Algoritmo": "merge sort",
+        "Lista": "lista_melhor_100k",
+        "Trocas": 1700000,
+        "Comparacoes": 877968,
+        "Tempo": 0.3235347270965576
+    },
+    "16": {
+        "Algoritmo": "selection sort",
+        "Lista": "lista_melhor_100k",
+        "Trocas": 100000,
+        "Comparacoes": 4999950000,
+        "Tempo": 234.8750560283661
+    },
+    "17": {
+        "Algoritmo": "shell sort",
+        "Lista": "lista_melhor_100k",
+        "Trocas": 1500006,
+        "Comparacoes": 1500006,
+        "Tempo": 0.14763855934143066
+    },
+    "18": {
+        "Algoritmo": "bubble sort",
+        "Lista": "lista_medio_1k",
+        "Trocas": 244557,
+        "Comparacoes": 498222,
+        "Tempo": 0.04182243347167969
+    },
+    "19": {
+        "Algoritmo": "heap sort",
+        "Lista": "lista_medio_1k",
+        "Trocas": 9072,
+        "Comparacoes": 28716,
+        "Tempo": 0.003207683563232422
+    },
+    "20": {
+        "Algoritmo": "insertion sort",
+        "Lista": "lista_medio_1k",
+        "Trocas": 245556,
+        "Comparacoes": 245553,
+        "Tempo": 0.03224968910217285
+    },
+    "21": {
+        "Algoritmo": "merge sort",
+        "Lista": "lista_medio_1k",
+        "Trocas": 10000,
+        "Comparacoes": 8674,
+        "Tempo": 0.0025267601013183594
+    },
+    "22": {
+        "Algoritmo": "selection sort",
+        "Lista": "lista_medio_1k",
+        "Trocas": 1000,
+        "Comparacoes": 499500,
+        "Tempo": 0.021854400634765625
+    },
+    "23": {
+        "Algoritmo": "shell sort",
+        "Lista": "lista_medio_1k",
+        "Trocas": 15451,
+        "Comparacoes": 15451,
+        "Tempo": 0.0015704631805419922
+    },
+    "24": {
+        "Algoritmo": "bubble sort",
+        "Lista": "lista_medio_10k",
+        "Trocas": 24943534,
+        "Comparacoes": 50003109,
+        "Tempo": 4.535914421081543
+    },
+    "25": {
+        "Algoritmo": "heap sort",
+        "Lista": "lista_medio_10k",
+        "Trocas": 124242,
+        "Comparacoes": 387726,
+        "Tempo": 0.0445554256439209
+    },
+    "26": {
+        "Algoritmo": "insertion sort",
+        "Lista": "lista_medio_10k",
+        "Trocas": 24953533,
+        "Comparacoes": 24953521,
+        "Tempo": 3.3962981700897217
+    },
+    "27": {
+        "Algoritmo": "merge sort",
+        "Lista": "lista_medio_10k",
+        "Trocas": 140000,
+        "Comparacoes": 123668,
+        "Tempo": 0.03373003005981445
+    },
+    "28": {
+        "Algoritmo": "selection sort",
+        "Lista": "lista_medio_10k",
+        "Trocas": 10000,
+        "Comparacoes": 49995000,
+        "Tempo": 2.2029545307159424
+    },
+    "29": {
+        "Algoritmo": "shell sort",
+        "Lista": "lista_medio_10k",
+        "Trocas": 270820,
+        "Comparacoes": 270820,
+        "Tempo": 0.028069019317626953
+    },
+    "30": {
+        "Algoritmo": "bubble sort",
+        "Lista": "lista_medio_100k",
+        "Trocas": 2503102504,
+        "Comparacoes": 5000018122,
+        "Tempo": 507.60545349121094
+    },
+    "31": {
+        "Algoritmo": "heap sort",
+        "Lista": "lista_medio_100k",
+        "Trocas": 1574702,
+        "Comparacoes": 4874106,
+        "Tempo": 0.5773375034332275
+    },
+    "32": {
+        "Algoritmo": "insertion sort",
+        "Lista": "lista_medio_100k",
+        "Trocas": 2503202503,
+        "Comparacoes": 2503202486,
+        "Tempo": 379.86474895477295
+    },
+    "33": {
+        "Algoritmo": "merge sort",
+        "Lista": "lista_medio_100k",
+        "Trocas": 1700000,
+        "Comparacoes": 1566551,
+        "Tempo": 0.4298248291015625
+    },
+    "34": {
+        "Algoritmo": "selection sort",
+        "Lista": "lista_medio_100k",
+        "Trocas": 100000,
+        "Comparacoes": 4999950000,
+        "Tempo": 254.8544523715973
+    },
+    "35": {
+        "Algoritmo": "shell sort",
+        "Lista": "lista_medio_100k",
+        "Trocas": 4261839,
+        "Comparacoes": 4261839,
+        "Tempo": 0.46160292625427246
+    },
+    "36": {
+        "Algoritmo": "bubble sort",
+        "Lista": "lista_pior_1k",
+        "Trocas": 499500,
+        "Comparacoes": 500499,
+        "Tempo": 0.05441570281982422
+    },
+    "37": {
+        "Algoritmo": "heap sort",
+        "Lista": "lista_pior_1k",
+        "Trocas": 8316,
+        "Comparacoes": 26448,
+        "Tempo": 0.0029146671295166016
+    },
+    "38": {
+        "Algoritmo": "insertion sort",
+        "Lista": "lista_pior_1k",
+        "Trocas": 500499,
+        "Comparacoes": 499500,
+        "Tempo": 0.06369709968566895
+    },
+    "39": {
+        "Algoritmo": "merge sort",
+        "Lista": "lista_pior_1k",
+        "Trocas": 10000,
+        "Comparacoes": 4932,
+        "Tempo": 0.0019943714141845703
+    },
+    "40": {
+        "Algoritmo": "selection sort",
+        "Lista": "lista_pior_1k",
+        "Trocas": 1000,
+        "Comparacoes": 499500,
+        "Tempo": 0.022777318954467773
+    },
+    "41": {
+        "Algoritmo": "shell sort",
+        "Lista": "lista_pior_1k",
+        "Trocas": 12706,
+        "Comparacoes": 12706,
+        "Tempo": 0.0012068748474121094
+    },
+    "42": {
+        "Algoritmo": "bubble sort",
+        "Lista": "lista_pior_10k",
+        "Trocas": 49995000,
+        "Comparacoes": 50004999,
+        "Tempo": 6.020447492599487
+    },
+    "43": {
+        "Algoritmo": "heap sort",
+        "Lista": "lista_pior_10k",
+        "Trocas": 116696,
+        "Comparacoes": 365088,
+        "Tempo": 0.04155111312866211
+    },
+    "44": {
+        "Algoritmo": "insertion sort",
+        "Lista": "lista_pior_10k",
+        "Trocas": 50004999,
+        "Comparacoes": 49995000,
+        "Tempo": 6.753474712371826
+    },
+    "45": {
+        "Algoritmo": "merge sort",
+        "Lista": "lista_pior_10k",
+        "Trocas": 140000,
+        "Comparacoes": 64608,
+        "Tempo": 0.02595353126525879
+    },
+    "46": {
+        "Algoritmo": "selection sort",
+        "Lista": "lista_pior_10k",
+        "Trocas": 10000,
+        "Comparacoes": 49995000,
+        "Tempo": 2.2513234615325928
+    },
+    "47": {
+        "Algoritmo": "shell sort",
+        "Lista": "lista_pior_10k",
+        "Trocas": 182565,
+        "Comparacoes": 182565,
+        "Tempo": 0.017822265625
+    },
+    "48": {
+        "Algoritmo": "bubble sort",
+        "Lista": "lista_pior_100k",
+        "Trocas": 4999950000,
+        "Comparacoes": 5000049999,
+        "Tempo": 663.3198857307434
+    },
+    "49": {
+        "Algoritmo": "heap sort",
+        "Lista": "lista_pior_100k",
+        "Trocas": 1497434,
+        "Comparacoes": 4642302,
+        "Tempo": 0.5316848754882812
+    },
+    "50": {
+        "Algoritmo": "insertion sort",
+        "Lista": "lista_pior_100k",
+        "Trocas": 5000049999,
+        "Comparacoes": 4999950000,
+        "Tempo": 766.713353395462
+    },
+    "51": {
+        "Algoritmo": "merge sort",
+        "Lista": "lista_pior_100k",
+        "Trocas": 1700000,
+        "Comparacoes": 815024,
+        "Tempo": 0.32348108291625977
+    },
+    "52": {
+        "Algoritmo": "selection sort",
+        "Lista": "lista_pior_100k",
+        "Trocas": 100000,
+        "Comparacoes": 4999950000,
+        "Tempo": 244.68697261810303
+    },
+    "53": {
+        "Algoritmo": "shell sort",
+        "Lista": "lista_pior_100k",
+        "Trocas": 2344566,
+        "Comparacoes": 2344566,
+        "Tempo": 0.23425555229187012
+    }
+}

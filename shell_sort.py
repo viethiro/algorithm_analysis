@@ -1,51 +1,67 @@
 import time
 import json
 
-# qtd_trocas+=1 # count troca
-# qtd_comps+=1 # count comparacao
+def shell_sort(json_file, list_name):
+    """
+    Executa o algoritmo Shell Sort em uma lista e retorna as estatísticas de execução.
+    
+    Args:
+        my_array (list): A lista de números a ser ordenada.
+    
+    Returns:
+        dict: Um dicionário contendo:
+            - 'sorted_array': A lista ordenada.
+            - 'elementos': O número de elementos na lista.
+            - 'qtd_trocas': O número de trocas realizadas.
+            - 'qtd_comps': O número de comparações realizadas.
+            - 'tempo': O tempo de execução em segundos.
+    """
 
-with open("listas_numeros.json", "r") as arquivo:
-    dados = json.load(arquivo)  # Lê o conteúdo do JSON
-nome_lista = 'lista_3'
-my_array = dados[nome_lista]
+    with open(json_file, "r") as arquivo:
+        dados = json.load(arquivo)
+    my_array = dados[list_name]
 
-qtd_trocas = 0 # Quantidade de Trocas
-qtd_comps = 0 # Quantidade de Comparações
-my_array = [64, 34, 25, 12, 22, 11, 90, 5]
-elementos = len(my_array)
+    qtd_trocas = 0
+    qtd_comps = 0
+    elementos = len(my_array)
 
-tempo_inicial = time.time()
-
-def shell_sort(my_array):
-    global qtd_trocas, qtd_comps
+    tempo_inicial = time.time()
+    
     n = len(my_array)
-    gap = n // 2
+    gap = n // 2  # Define o intervalo inicial
 
     while gap > 0:
         for i in range(gap, n):
             temp = my_array[i]
             j = i
-
+            qtd_comps += 1  # Contar comparação
+            # Comparação e troca
             while j >= gap and my_array[j - gap] > temp:
-                qtd_comps+=1 # count comparacao
+                qtd_comps += 1  # Contar comparação
                 my_array[j] = my_array[j - gap]
-                qtd_trocas+=1 # count troca
+                qtd_trocas += 1  # Contar troca
                 j -= gap
 
             my_array[j] = temp
-            qtd_trocas+=1 # count troca
+            qtd_trocas += 1  # Contar troca final
 
-        gap //= 2
+        gap //= 2  # Reduz o intervalo
 
-    return my_array
+    tempo = time.time() - tempo_inicial
 
-tempo = time.time() - tempo_inicial
+    return {
+        "Algoritmo": "shell sort",
+        "Lista": list_name,
+        "Trocas": qtd_trocas,
+        "Comparacoes": qtd_comps,
+        "Tempo": tempo
+    }
 
-print(
-    f'''
-{my_array}\nElemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
-'''
-    )
+if __name__ == "__main__":
+    resultado = shell_sort("listas_numeros.json", "lista_melhor_1k")
+    print(resultado)
+
+
 
 # Passo 1: Início com o array não ordenado.
 # Array inicial: [64, 34, 25, 12, 22, 11, 90, 5]

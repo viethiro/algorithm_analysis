@@ -1,36 +1,61 @@
 import time
 import json
 
-with open("listas_numeros.json", "r") as arquivo:
-    dados = json.load(arquivo)  # Lê o conteúdo do JSON
-nome_lista = 'lista_3'
-my_array = dados[nome_lista]
+def bubble_sort_with_metrics(json_file, list_name):
+    """
+    Realiza o Bubble Sort em uma lista especificada dentro de um arquivo JSON e retorna métricas.
 
-# qtd_trocas+=1 # count troca
-# qtd_comps+=1 # count comparacao
+    Args:
+        json_file (str): Caminho para o arquivo JSON contendo as listas.
+        list_name (str): Nome da lista a ser ordenada.
 
-qtd_trocas = 0 # Quantidade de Trocas
-qtd_comps = 0# Quantidade de Comparações
-elementos = len(my_array)
+    Returns:
+        dict: Dicionário contendo as métricas e o tempo de execução.
+    """
+    # Carregar os dados do arquivo JSON
+    with open(json_file, "r") as arquivo:
+        dados = json.load(arquivo)
+    my_array = dados[list_name]
 
-tempo_inicial = time.time()
+    # Inicialização das métricas
+    qtd_trocas = 0
+    qtd_comps = 0
+    elementos = len(my_array)
 
-n = len(my_array)
-for i in range(n-1):
-    swapped = False
-    for j in range(n-i-1):
-        qtd_comps+=1 # count comparacao
-        if my_array[j] > my_array[j+1]:
-            my_array[j], my_array[j+1] = my_array[j+1], my_array[j]
-            qtd_trocas+=1 # count troca
-            swapped = True
-    qtd_comps+=1 # count comparacao
-    if not swapped:
-        break
+    # Medir o tempo de execução
+    tempo_inicial = time.time()
 
-tempo = time.time() - tempo_inicial
+    # Algoritmo de Bubble Sort
+    n = len(my_array)
+    for i in range(n - 1):
+        swapped = False
+        for j in range(n - i - 1):
+            qtd_comps += 1  # Contar comparações
+            if my_array[j] > my_array[j + 1]:
+                my_array[j], my_array[j + 1] = my_array[j + 1], my_array[j]
+                qtd_trocas += 1  # Contar trocas
+                swapped = True
+        qtd_comps += 1  # Contar comparações
+        if not swapped:
+            break
 
-print(f'Elemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}')
+    # Calcular tempo total
+    tempo = time.time() - tempo_inicial
+
+    # Retornar métricas
+    return {
+        "Algoritmo": "bubble sort",
+        "Lista": list_name,
+        "Trocas": qtd_trocas,
+        "Comparacoes": qtd_comps,
+        "Tempo": tempo
+    }
+
+if __name__ == "__main__":
+    # Exemplo de uso
+    resultado = bubble_sort_with_metrics("listas_numeros.json", "lista_1")
+    print(resultado)
+
 
 # Etapa 1: começamos com uma matriz não classificada.
 # [7, 12, 9, 11, 3]

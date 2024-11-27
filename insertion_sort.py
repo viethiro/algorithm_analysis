@@ -1,51 +1,65 @@
 import time
 import json
 
-# Elemen: 1000
-# Trocas: 245334
-# Compar: 245327
-# Tempo : 0.10783004760742188
+def insertion_sort_with_metrics(json_file, list_name):
+    """
+    Realiza o Insertion Sort em uma lista especificada dentro de um arquivo JSON e retorna métricas.
 
-# Elemen: 10000
-# Trocas: 24815322
-# Compar: 24815312
-# Tempo : 10.196500301361084
+    Args:
+        json_file (str): Caminho para o arquivo JSON contendo as listas.
+        list_name (str): Nome da lista a ser ordenada.
 
-# Elemen: 100000
-# Trocas: 2501279886
-# Compar: 2501279875
-# Tempo : 591.8752777576447
+    Returns:
+        dict: Dicionário contendo as métricas e o tempo de execução.
+    """
+    # Variáveis globais para métricas
+    global qtd_trocas, qtd_comps
+    qtd_trocas = 0
+    qtd_comps = 0
 
-with open("listas_numeros.json", "r") as arquivo:
-    dados = json.load(arquivo)  # Lê o conteúdo do JSON
-nome_lista = 'lista_1'
-my_array = dados[nome_lista]
+    # Carregar os dados do arquivo JSON
+    with open(json_file, "r") as arquivo:
+        dados = json.load(arquivo)
+    my_array = dados[list_name]
 
-qtd_trocas = 0 # Quantidade de Trocas
-qtd_comps = 0 # Quantidade de Comparações
-# my_array = [64, 34, 25, 12, 22, 11, 90, 5]
-elementos = len(my_array)
+    # Inicializar métricas
+    elementos = len(my_array)
 
-tempo_inicial = time.time()
+    # Medir tempo de execução
+    tempo_inicial = time.time()
 
-n = len(my_array)
-for i in range(1,n):
-    insert_index = i
-    current_value = my_array[i]
-    for j in range(i-1, -1, -1):
-        qtd_comps+=1 # count comparacao
-        if my_array[j] > current_value:
-            my_array[j+1] = my_array[j]
-            qtd_trocas+=1 # count troca
-            insert_index = j
-        else:
-            break
-    my_array[insert_index] = current_value
-    qtd_trocas+=1 # count troca
+    # Algoritmo de Insertion Sort
+    n = len(my_array)
+    for i in range(1, n):
+        insert_index = i
+        current_value = my_array[i]
+        for j in range(i - 1, -1, -1):
+            qtd_comps += 1  # Contar comparação
+            if my_array[j] > current_value:
+                my_array[j + 1] = my_array[j]
+                qtd_trocas += 1  # Contar troca
+                insert_index = j
+            else:
+                break
+        my_array[insert_index] = current_value
+        qtd_trocas += 1  # Contar troca
 
-tempo = time.time() - tempo_inicial
+    tempo = time.time() - tempo_inicial
 
-print(f'Elemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}')
+    # Retornar resultados
+    return {
+        "Algoritmo": "insertion sort",
+        "Lista": list_name,
+        "Trocas": qtd_trocas,
+        "Comparacoes": qtd_comps,
+        "Tempo": tempo
+    }
+
+if __name__ == "__main__":
+    # Exemplo de uso
+    resultado = insertion_sort_with_metrics("listas_numeros.json", "lista_1")
+    print(resultado)
+
 
 # Etapa 1: começamos com uma matriz não classificada.
 # [ 7, 12, 9, 11, 3]

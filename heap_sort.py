@@ -1,72 +1,86 @@
 import time
 import json
 
-# Elemen: 1000
-# Trocas: 9082
-# Compar: 28746
-# Tempo : 6.4373016357421875e-06
+def heap_sort_with_metrics(json_file, list_name):
+    """
+    Realiza o Heap Sort em uma lista especificada dentro de um arquivo JSON e retorna métricas.
 
-# Elemen: 10000
-# Trocas: 124263
-# Compar: 387789
-# Tempo : 6.9141387939453125e-06
+    Args:
+        json_file (str): Caminho para o arquivo JSON contendo as listas.
+        list_name (str): Nome da lista a ser ordenada.
 
-# Elemen: 100000
-# Trocas: 1574644
-# Compar: 4873932
-# Tempo : 6.198883056640625e-06
-
-with open("listas_numeros.json", "r") as arquivo:
-    dados = json.load(arquivo)  # Lê o conteúdo do JSON
-nome_lista = 'lista_3'
-my_array = dados[nome_lista]
-
-qtd_trocas = 0 # Quantidade de Trocas
-qtd_comps = 0# Quantidade de Comparações
-# my_array = [64, 34, 25, 12, 22, 11, 90, 5]
-elementos = len(my_array)
-tempo_inicial = time.time()
-
-def heapify(arr, n, i):
+    Returns:
+        dict: Dicionário contendo as métricas e o tempo de execução.
+    """
+    # Variáveis globais para métricas
     global qtd_trocas, qtd_comps
-    largest = i
-    left = 2 * i + 1
-    right = 2 * i + 2
+    qtd_trocas = 0
+    qtd_comps = 0
 
-    qtd_comps+=1 # count comparacao
-    if left < n and arr[left] > arr[largest]:
-        largest = left
+    # Função para reorganizar o heap
+    def heapify(arr, n, i):
+        global qtd_trocas, qtd_comps
+        largest = i
+        left = 2 * i + 1
+        right = 2 * i + 2
 
-    qtd_comps+=1 # count comparacao
-    if right < n and arr[right] > arr[largest]:
-        largest = right
+        qtd_comps += 1  # Contar comparação
+        if left < n and arr[left] > arr[largest]:
+            largest = left
 
-    qtd_comps+=1 # count comparacao
-    if largest != i:
-        arr[i], arr[largest] = arr[largest], arr[i]
-        qtd_trocas+=1 # count troca
-        heapify(arr, n, largest)
+        qtd_comps += 1  # Contar comparação
+        if right < n and arr[right] > arr[largest]:
+            largest = right
 
-def heap_sort(arr):
-    global qtd_trocas, qtd_comps
-    n = len(arr)
+        qtd_comps += 1  # Contar comparação
+        if largest != i:
+            arr[i], arr[largest] = arr[largest], arr[i]
+            qtd_trocas += 1  # Contar troca
+            heapify(arr, n, largest)
 
-    for i in range(n // 2 - 1, -1, -1):
-        heapify(arr, n, i)
+    # Função principal de Heap Sort
+    def heap_sort(arr):
+        global qtd_trocas, qtd_comps
+        n = len(arr)
 
-    for i in range(n - 1, 0, -1):
-        arr[i], arr[0] = arr[0], arr[i]
-        qtd_trocas+=1 # count troca
-        heapify(arr, i, 0)
+        # Construção do heap
+        for i in range(n // 2 - 1, -1, -1):
+            heapify(arr, n, i)
 
-    return arr
+        # Extração de elementos do heap
+        for i in range(n - 1, 0, -1):
+            arr[i], arr[0] = arr[0], arr[i]
+            qtd_trocas += 1  # Contar troca
+            heapify(arr, i, 0)
 
+        return arr
 
-tempo = time.time() - tempo_inicial
+    # Carregar os dados do arquivo JSON
+    with open(json_file, "r") as arquivo:
+        dados = json.load(arquivo)
+    my_array = dados[list_name]
 
-sorted_array = heap_sort(my_array)
-print(f'Elemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}')
+    # Inicializar métricas
+    elementos = len(my_array)
 
+    # Medir tempo de execução
+    tempo_inicial = time.time()
+    sorted_array = heap_sort(my_array)
+    tempo = time.time() - tempo_inicial
+
+    # Retornar resultados
+    return {
+        "Algoritmo": "heap sort",
+        "Lista": list_name,
+        "Trocas": qtd_trocas,
+        "Comparacoes": qtd_comps,
+        "Tempo": tempo
+    }
+
+if __name__ == "__main__":
+    # Exemplo de uso
+    resultado = heap_sort_with_metrics("listas_numeros.json", "lista_2")
+    print(resultado)
 
 
 # Etapa 1: Array inicial não ordenado

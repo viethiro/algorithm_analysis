@@ -1,57 +1,69 @@
 import time
 import json
 
-"""
-Elemen: 1000
-Trocas: 1000
-Compar: 499500
-Tempo : 0.11779618263244629
+# Função principal do Selection Sort com contagem de métricas
+def selection_sort(array):
+    """
+    Implementação do Selection Sort com contagem de trocas e comparações.
 
-Elemen: 10000
-Trocas: 10000
-Compar: 49995000
-Tempo : 10.274255990982056
+    Args:
+        array (list): Lista de elementos a ser ordenada.
 
-Elemen: 100000
-Trocas: 100000
-Compar: 4999950000
-Tempo : 659.04212474823
+    Returns:
+        tuple: (array ordenado, qtd_trocas, qtd_comps, tempo_execucao)
+    """
+    n = len(array)
+    qtd_trocas = 0  # Contador de trocas
+    qtd_comps = 0   # Contador de comparações
 
-"""
+    tempo_inicial = time.time()
+    for i in range(n):
+        min_index = i
+        for j in range(i + 1, n):
+            qtd_comps += 1  # Contar comparação
+            if array[j] < array[min_index]:
+                min_index = j
+        # Trocar o elemento atual com o menor encontrado
+        array[i], array[min_index] = array[min_index], array[i]
+        qtd_trocas += 1  # Contar troca
 
-# qtd_trocas+=1 # count troca
-# qtd_comps+=1 # count comparacao
+    tempo_execucao = time.time() - tempo_inicial
+    return array, qtd_trocas, qtd_comps, tempo_execucao
 
-with open("listas_numeros.json", "r") as arquivo:
-    dados = json.load(arquivo)  # Lê o conteúdo do JSON
-nome_lista = 'lista_3'
-my_array = dados[nome_lista]
+# Função para executar o Selection Sort em uma lista de um arquivo JSON
+def run_selection_sort(json_file, list_name):
+    """
+    Executa o Selection Sort em uma lista especificada de um arquivo JSON, calculando métricas.
 
-qtd_trocas = 0 # Quantidade de Trocas
-qtd_comps = 0 # Quantidade de Comparações
-# my_array = [64, 34, 25, 12, 22, 11, 90, 5]
-elementos = len(my_array)
+    Args:
+        json_file (str): Caminho para o arquivo JSON contendo as listas.
+        list_name (str): Nome da lista a ser ordenada.
 
-tempo_inicial = time.time()
+    Returns:
+        dict: Dicionário contendo as métricas e o tempo de execução.
+    """
+    # Carregar dados do JSON
+    with open(json_file, "r") as arquivo:
+        dados = json.load(arquivo)
+    my_array = dados[list_name]
 
-n = len(my_array)
-for i in range(n):
-    min_index = i
-    for j in range(i+1, n):
-        qtd_comps+=1 # count comparacao
-        if my_array[j] < my_array[min_index]:
-            min_index = j   
-    my_array[i], my_array[min_index] = my_array[min_index], my_array[i]
-    qtd_trocas+=1 # count troca
+    # Ordenar e coletar métricas
+    sorted_array, qtd_trocas, qtd_comps, tempo_execucao = selection_sort(my_array)
 
+    # Retornar métricas
+    return {
+        "Algoritmo": "selection sort",
+        "Lista": list_name,
+        "Trocas": qtd_trocas,
+        "Comparacoes": qtd_comps,
+        "Tempo": tempo_execucao
+    }
 
-tempo = time.time() - tempo_inicial
+if __name__ == "__main__":
+    # Exemplo de uso
+    resultado = run_selection_sort("listas_numeros.json", "lista_1")
+    print(resultado)
 
-print(
-    f'''
-Elemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
-'''
-    )
 
 # Etapa 1: começamos com uma matriz não classificada.
 # [ 7, 12, 9, 11, 3]

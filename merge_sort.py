@@ -1,45 +1,23 @@
 import time
 import json
 
-# Elemen: 1000
-# Trocas: 10000
-# Compar: 8713
-# Tempo : 6.198883056640625e-06
-
-# Elemen: 10000
-# Trocas: 140000
-# Compar: 123708
-# Tempo : 7.3909759521484375e-06
-
-# Elemen: 100000
-# Trocas: 1700000
-# Compar: 1566494
-# Tempo : 6.198883056640625e-06
-
-
-# qtd_trocas+=1 # count troca
-# qtd_comps+=1 # count comparacao
-
-with open("listas_numeros.json", "r") as arquivo:
-    dados = json.load(arquivo)  # Lê o conteúdo do JSON
-nome_lista = 'lista_3'
-my_array = dados[nome_lista]
-
-
-qtd_trocas = 0 # Quantidade de Trocas
-qtd_comps = 0# Quantidade de Comparações
-# my_array = [64, 34, 25, 12, 22, 11, 90, 5]
-elementos = len(my_array)
-
-tempo_inicial = time.time()
-
 def merge(left, right):
+    """
+    Realiza a junção de duas listas ordenadas em uma única lista ordenada.
+    
+    Args:
+        left (list): Sublista esquerda.
+        right (list): Sublista direita.
+    
+    Returns:
+        list: Lista ordenada resultante da junção.
+    """
     global qtd_trocas, qtd_comps
     result = []
     i = j = 0
     
     while i < len(left) and j < len(right):
-        qtd_comps+=1 # count comparacao
+        qtd_comps += 1  # Contar comparação
         if left[i] < right[j]:
             result.append(left[i])
             i += 1
@@ -52,9 +30,20 @@ def merge(left, right):
     
     return result
 
-def mergeSort(arr):
+def merge_sort_with_metrics(arr):
+    """
+    Realiza o Merge Sort em uma lista e coleta métricas de desempenho.
+    
+    Args:
+        arr (list): Lista de números a ser ordenada.
+    
+    Returns:
+        list: Lista ordenada.
+    """
     global qtd_trocas, qtd_comps
-    step = 1  # Starting with sub-arrays of length 1
+    qtd_trocas = 0
+    qtd_comps = 0
+    step = 1  # Começa com sublistas de comprimento 1
     length = len(arr)
     
     while step < length:
@@ -64,24 +53,50 @@ def mergeSort(arr):
             
             merged = merge(left, right)
             
-            # Place the merged array back into the original array
+            # Coloca a lista mesclada de volta no array original
             for j, val in enumerate(merged):
                 arr[i + j] = val
-                qtd_trocas+=1 # count troca
+                qtd_trocas += 1  # Contar troca
                 
-        step *= 2  # Double the sub-array length for the next iteration
+        step *= 2  # Dobra o comprimento da sublista para a próxima iteração
         
     return arr
 
+def run_merge_sort_with_metrics(json_file, list_name):
+    """
+    Executa o Merge Sort em uma lista especificada de um arquivo JSON, calculando métricas.
+    
+    Args:
+        json_file (str): Caminho para o arquivo JSON contendo as listas.
+        list_name (str): Nome da lista a ser ordenada.
+    
+    Returns:
+        dict: Dicionário contendo as métricas e o tempo de execução.
+    """
+    # Carregar os dados do arquivo JSON
+    with open(json_file, "r") as arquivo:
+        dados = json.load(arquivo)
+    my_array = dados[list_name]
 
-tempo = time.time() - tempo_inicial
+    # Medir o tempo de execução
+    tempo_inicial = time.time()
+    sorted_array = merge_sort_with_metrics(my_array)
+    tempo = time.time() - tempo_inicial
 
-sorted_array = mergeSort(my_array)
-print(
-    f'''
-Elemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
-'''
-    )
+    # Retornar resultados
+    return {
+        "Algoritmo": "merge sort",
+        "Lista": list_name,
+        "Trocas": qtd_trocas,
+        "Comparacoes": qtd_comps,
+        "Tempo": tempo
+    }
+
+if __name__ == "__main__":
+    # Exemplo de uso
+    resultado = run_merge_sort_with_metrics("listas_numeros.json", "lista_melhor_1k")
+    print(resultado)
+
 
 # Etapa 1: Começamos com um array não classificado, e sabemos que ele se divide ao meio até que os subarrays consistam apenas de um elemento. A função Merge Sort chama a si mesma duas vezes, uma para cada metade do array. Isso significa que o primeiro subarray será dividido nos menores pedaços primeiro.
 # [ 12, 8, 9, 3, 11, 5, 4]

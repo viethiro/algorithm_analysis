@@ -1,78 +1,103 @@
 import time
 import json
-
-"""
-Elemen: 100000
-Trocas: 1187239
-Compar: 2322452
-Tempo : 6.198883056640625e-06
+import sys
+sys.setrecursionlimit(10000000)  # Ajuste conforme necessário
 
 
-Elemen: 10000
-Trocas: 85135
-Compar: 179154
-Tempo : 5.9604644775390625e-06
-
-
-Elemen: 1000
-Trocas: 6491
-Compar: 13136
-Tempo : 7.3909759521484375e-06
-
-"""
-
-# qtd_trocas+=1 # count troca
-# qtd_comps+=1 # count comparacao
-
-with open("listas_numeros.json", "r") as arquivo:
-    dados = json.load(arquivo)  # Lê o conteúdo do JSON
-nome_lista = 'lista_1'
-my_array = dados[nome_lista]
-
-qtd_trocas = 0 # Quantidade de Trocas
-qtd_comps = 0 # Quantidade de Comparações
-# my_array = [64, 34, 25, 12, 22, 11, 90, 5]
-elementos = len(my_array)
-
-tempo_inicial = time.time()
-
+# Função para particionar o array em torno do pivô
 def partition(array, low, high):
+    """
+    Particiona o array para o Quick Sort, colocando os elementos menores que o pivô à esquerda
+    e os maiores à direita.
+
+    Args:
+        array (list): Lista de elementos.
+        low (int): Índice inferior.
+        high (int): Índice superior (pivô).
+
+    Returns:
+        int: Índice do pivô após a partição.
+    """
     global qtd_comps, qtd_trocas
-    pivot = array[high]
-    i = low - 1
+    pivot = array[high]  # Escolhe o último elemento como pivô
+    i = low - 1  # Índice para os elementos menores que o pivô
 
     for j in range(low, high):
-        qtd_comps+=1 # count comparacao
+        qtd_comps += 1  # Contar comparação
         if array[j] <= pivot:
             i += 1
-            array[i], array[j] = array[j], array[i]
-            qtd_trocas+=1 # count troca
+            array[i], array[j] = array[j], array[i]  # Trocar elementos
+            qtd_trocas += 1  # Contar troca
 
+    # Coloca o pivô na posição correta
     array[i+1], array[high] = array[high], array[i+1]
-    qtd_trocas+=1 # count troca
+    qtd_trocas += 1  # Contar troca
     return i+1
 
+# Função principal do Quick Sort
 def quicksort(array, low=0, high=None):
+    """
+    Implementação do Quick Sort com recursão.
+
+    Args:
+        array (list): Lista de elementos.
+        low (int, optional): Índice inferior. Padrão é 0.
+        high (int, optional): Índice superior. Padrão é o tamanho da lista - 1.
+
+    Returns:
+        None: A ordenação é feita no próprio array.
+    """
     global qtd_comps, qtd_trocas
-    qtd_comps+=1 # count comparacao
     if high is None:
         high = len(array) - 1
 
-    qtd_comps+=1 # count comparacao
     if low < high:
+        # Particiona o array e obtém o índice do pivô
         pivot_index = partition(array, low, high)
-        quicksort(array, low, pivot_index-1)
-        quicksort(array, pivot_index+1, high)
+        # Ordena os subarrays à esquerda e à direita do pivô
+        quicksort(array, low, pivot_index - 1)
+        quicksort(array, pivot_index + 1, high)
 
+# Função para executar o Quick Sort com métricas
+def run_quicksort_with_metrics(json_file, list_name):
+    """
+    Executa o Quick Sort em uma lista especificada de um arquivo JSON, calculando métricas.
 
-tempo = time.time() - tempo_inicial
+    Args:
+        json_file (str): Caminho para o arquivo JSON contendo as listas.
+        list_name (str): Nome da lista a ser ordenada.
 
-sorted_array = quicksort(my_array)
-print(
-    f'''
-Elemen: {elementos}\nTrocas: {qtd_trocas}\nCompar: {qtd_comps}\nTempo : {tempo}
-'''
-    )
+    Returns:
+        dict: Dicionário contendo as métricas e o tempo de execução.
+    """
+    global qtd_trocas, qtd_comps
+    qtd_trocas = 0  # Reseta contagem de trocas
+    qtd_comps = 0   # Reseta contagem de comparações
+
+    # Carrega os dados do JSON
+    with open(json_file, "r") as arquivo:
+        dados = json.load(arquivo)
+    my_array = dados[list_name]
+
+    # Mede o tempo de execução
+    tempo_inicial = time.time()
+    quicksort(my_array)
+    tempo = time.time() - tempo_inicial
+
+    # Retorna as métricas
+    return {
+        "Algoritmo": "quicksort",
+        "Lista": list_name,
+        "Trocas": qtd_trocas,
+        "Comparacoes": qtd_comps,
+        "Tempo": tempo
+    }
+
+if __name__ == "__main__":
+    # Exemplo de uso
+    resultado = run_quicksort_with_metrics("listas_numeros.json", "lista_melhor_1k")
+    print(resultado)
+
 
 
 # Etapa 1: começamos com uma matriz não classificada.
